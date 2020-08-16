@@ -1,0 +1,239 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://PromptController/PromptController.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Main/square_small.png" type="Texture" id=2]
+[ext_resource path="res://Main/Canvas.gd" type="Script" id=3]
+[ext_resource path="res://Fonts/Muli-Regular.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Main/MainController.gd" type="Script" id=5]
+[ext_resource path="res://Fonts/Bungee-Regular.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://Main/PreSessionCanvas.gd" type="Script" id=7]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 48
+use_filter = true
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 24
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 48
+use_filter = true
+font_data = ExtResource( 6 )
+
+[sub_resource type="Animation" id=5]
+resource_name = "TitleAnim_0"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1.5, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 10.0, -10.0, 0.0 ]
+}
+
+[node name="Main" type="Node"]
+script = ExtResource( 5 )
+
+[node name="PromptController" parent="." instance=ExtResource( 1 )]
+
+[node name="BG" type="TextureRect" parent="."]
+modulate = Color( 0.92549, 0.788235, 0.321569, 1 )
+margin_right = 960.0
+margin_bottom = 540.0
+texture = ExtResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Round_Timer" type="Timer" parent="."]
+wait_time = 30.0
+
+[node name="SessionCanvas" type="Control" parent="."]
+visible = false
+margin_right = 960.0
+margin_bottom = 540.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Prompt" type="Label" parent="SessionCanvas"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -340.0
+margin_top = -120.0
+margin_right = 340.0
+margin_bottom = -70.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "This is a prompt"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Label" parent="SessionCanvas"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -125.0
+margin_bottom = 125.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "30"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextEdit" type="TextEdit" parent="SessionCanvas"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -292.8
+margin_top = 30.0
+margin_right = 292.8
+margin_bottom = 130.0
+custom_fonts/font = SubResource( 3 )
+smooth_scrolling = true
+wrap_enabled = true
+caret_blink = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PreSessionCanvas" type="Control" parent="."]
+margin_right = 960.0
+margin_bottom = 540.0
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Intro" type="Label" parent="PreSessionCanvas"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -340.0
+margin_top = -25.0
+margin_right = 340.0
+margin_bottom = 25.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "press Space to start session"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="PreSessionCanvas"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -340.0
+margin_top = 100.0
+margin_right = 340.0
+margin_bottom = 150.0
+rect_rotation = -5.03161
+rect_pivot_offset = Vector2( 340, 25 )
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "IDEA TOY"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PreSessionCanvas/Title"]
+anims/TitleAnim_0 = SubResource( 5 )
+
+[node name="Rounds" type="Label" parent="PreSessionCanvas"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -340.0
+margin_top = -190.0
+margin_right = 340.0
+margin_bottom = -140.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "rounds: 5"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EndSession" type="Control" parent="."]
+visible = false
+margin_right = 960.0
+margin_bottom = 540.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Intro" type="Label" parent="EndSession"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -340.0
+margin_top = -25.0
+margin_right = 340.0
+margin_bottom = 25.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "press Space to return"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SaveLoc" type="Label" parent="EndSession"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -340.0
+margin_top = -190.0
+margin_right = 340.0
+margin_bottom = -140.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "session saved in: "
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="prompt_received" from="PromptController" to="." method="_on_PromptController_prompt_received"]
+[connection signal="prompt_received" from="PromptController" to="SessionCanvas" method="_on_PromptController_prompt_received"]
