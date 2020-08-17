@@ -68,6 +68,7 @@ func end_session():
 func start_session():
 	session_state = SESSION.RUNNING
 	entryField.grab_focus()
+	$PromptController.send_request()
 	$SessionCanvas.visible = true
 	$PreSessionCanvas.visible = false
 	$Round_Timer.start(30.0)

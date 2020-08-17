@@ -17,7 +17,8 @@ _global_script_class_icons={
 
 config/name="Idea Toy"
 run/main_scene="res://Main/Main.tscn"
-config/icon="res://icon.png"
+config/icon="res://idea-toy-icon.png"
+config/windows_native_icon="res://idea_toy_ico_1.ico"
 
 [display]
 
